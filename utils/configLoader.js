@@ -9,7 +9,7 @@ module.exports = function ({ configPath }) {
   const isProduction = argv.production || process.env.NODE_ENV == 'production';
 
   global.config = isProduction ? allConfigs.production : allConfigs.test;
-  config.secrets.login = require(path.resolve(config.secretConfig));
+  config.secrets = require(path.resolve(config.secretConfig));
 
   config.db.credentials = ini.parse(
     fs.readFileSync(config.db.credentialsFile, 'utf-8')
