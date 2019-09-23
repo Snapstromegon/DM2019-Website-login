@@ -54,9 +54,9 @@ module.exports = class User extends Sequelize.Model {
   }
 
   static async createDefaultUser(models) {
-    const adminUser = config.secrets.adminUser;
+    const adminUser = config.secrets.login.adminUser;
     adminUser.roles.push('Admin');
-    const usersToCreate = [...config.secrets.defaultUsers, adminUser];
+    const usersToCreate = [...config.secrets.login.defaultUsers, adminUser];
 
     for (const userToCreate of usersToCreate) {
       const user = (await this.findOrCreate({

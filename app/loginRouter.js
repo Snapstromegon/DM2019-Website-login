@@ -49,7 +49,7 @@ router.post('/', (req, res, next) => {
 
         const token = jwt.sign(
           user,
-          config.secrets.jwtLoginSecret
+          config.secrets.login.jwtSecret
         );
         res.cookie('loginJWT', token,{domain: global.config.loginDomain});
         return res.redirect(req.query.redirectBack || '/user');

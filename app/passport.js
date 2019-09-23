@@ -48,7 +48,7 @@ passport.use(
   new JWTStrategy(
     {
       jwtFromRequest: req => req.cookies.loginJWT,
-      secretOrKey: config.secrets.jwtLoginSecret
+      secretOrKey: config.secrets.login.jwtSecret
     },
     async (jwtPayload, cb) => {
       //find the user in db if needed
