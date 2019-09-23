@@ -31,6 +31,6 @@
       "dialect": "mariadb"
     },
     "loginDomain": "freestyledm2019.de",
-    "secretConfig": "./secrets.json"
+    "secretConfig": "/home/odm2019/secrets.json"
   }
 }
