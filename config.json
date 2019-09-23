@@ -1,0 +1,36 @@
+{
+  "test": {
+    "express": {
+      "port": 88
+    },
+    "sync": {
+      "updateInterval": 600000
+    },
+    "db": {
+      "credentialsFile": "./.my.cnf",
+      "credentialsName": "client",
+      "database": "odm2019_Registrants",
+      "host": "localhost",
+      "dialect": "mariadb"
+    },
+    "loginDomain": "",
+    "secretConfig": "./secrets.json"
+  },
+  "production": {
+    "express": {
+      "port": 9090
+    },
+    "sync": {
+      "updateInterval": 600000
+    },
+    "db": {
+      "credentialsFile": "/home/odm2019/.my.cnf",
+      "credentialsName": "client",
+      "database": "odm2019_login_Registrants",
+      "host": "localhost",
+      "dialect": "mariadb"
+    },
+    "loginDomain": "freestyledm2019.de",
+    "secretConfig": "./secrets.json"
+  }
+}
