@@ -9,12 +9,15 @@
     "db": {
       "credentialsFile": "./.my.cnf",
       "credentialsName": "client",
-      "database": "odm2019_Registrants",
+      "database": "odm2019_Users",
       "host": "localhost",
       "dialect": "mariadb"
     },
     "loginDomain": "",
-    "secretConfig": "./secrets.json"
+    "secretConfig": "./secrets.json",
+    "cookie": {
+      "domain": ""
+    }
   },
   "production": {
     "express": {
@@ -26,11 +29,14 @@
     "db": {
       "credentialsFile": "/home/odm2019/.my.cnf",
       "credentialsName": "client",
-      "database": "odm2019_login_Registrants",
+      "database": "odm2019_Users",
       "host": "localhost",
       "dialect": "mariadb"
     },
     "loginDomain": "freestyledm2019.de",
-    "secretConfig": "/home/odm2019/secrets.json"
+    "secretConfig": "/home/odm2019/secrets.json",
+    "cookie": {
+      "domain": "freestyledm2019.de"
+    }
   }
 }

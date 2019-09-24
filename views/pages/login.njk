@@ -47,14 +47,23 @@
         <label for="name">Name:</label>
         <input
           type="search"
-          name="registrant[name]"
+          name="user[name]"
           id="name"
-          list="registrantnames"
+          list="userNames"
           oninput="updateACLink(this)"
         />
-        <datalist id="registrantnames">
+        {# <datalist id="userNames">
+          {% for user in users %}
+            <option>
+            {% if user.registrant %}
+              #{{ user.registrant.iufId }}
+            {% endif %}
+            {{ user.name }}</option>
+          {% endfor %}
+        </datalist> #}
+        <datalist id="userNames">
           {% for registrant in registrants %}
-          <option>#{{ registrant.iufId }} {{ registrant.name }}</option>
+            <option>#{{ registrant.iufId }} {{ registrant.User.name }}</option>
           {% endfor %}
         </datalist>
         <p>
@@ -66,12 +75,7 @@
           >
         </p>
         <label for="password">Password:</label>
-        <input id="password" type="password" name="registrant[password]" />
-        <label for="loginType">Login Typ:</label>
-        <select id="loginType" name="loginType">
-          <option>Registrant</option>
-          <option>Admin</option>
-        </select>
+        <input id="password" type="password" name="user[password]" />
         <input type="submit" value="Login" />
       </form>
     </main>

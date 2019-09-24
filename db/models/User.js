@@ -6,20 +6,6 @@ module.exports = class User extends Sequelize.Model {
     return argon2.verify(this.password, password);
   }
 
-  async getSeriealizeable() {
-    return {
-      id: this.id,
-      email: this.email,
-      roles: (await this.getRoles()).map(role => {
-        return { id: role.id, name: role.name };
-      })
-    };
-  }
-
-  get displayName() {
-    return this.email;
-  }
-
   /**
    * Init Model
    * @param {Sequelize} sequelize
@@ -28,18 +14,16 @@ module.exports = class User extends Sequelize.Model {
   static init(sequelize, DataTypes) {
     return super.init(
       {
-        email: { type: Sequelize.STRING, allowNull: false },
-        password: { type: Sequelize.STRING, allowNull: false }
+        name: { type: DataTypes.STRING, allowNull: false },
+        password: { type: DataTypes.STRING, allowNull: false }
       },
       {
         sequelize,
         hooks: {
           beforeCreate: async user => {
-            console.log('create');
             user.password = await argon2.hash(user.password);
           },
           beforeUpdate: async user => {
-            console.log('update');
             if (!user.password.startsWith('$argon2')) {
               user.password = await argon2.hash(user.password);
             }
@@ -54,13 +38,9 @@ module.exports = class User extends Sequelize.Model {
   }
 
   static async createDefaultUser(models) {
-    const adminUser = config.secrets.login.adminUser;
-    adminUser.roles.push('Admin');
-    const usersToCreate = [...config.secrets.login.defaultUsers, adminUser];
-
-    for (const userToCreate of usersToCreate) {
+    for (const userToCreate of config.secrets.login.defaultUsers) {
       const user = (await this.findOrCreate({
-        where: { email: userToCreate.email },
+        where: { name: userToCreate.name },
         defaults: { password: userToCreate.password }
       }))[0];
       for (const roleName of userToCreate.roles) {
