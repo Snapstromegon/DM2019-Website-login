@@ -32,17 +32,17 @@ module.exports = class IufTool {
     const dom = new JSDOM(response);
     const document = dom.window.document;
     const rows = document.querySelectorAll('table tbody tr');
-    const Registrants = [];
+    const registrants = [];
     for (const row of rows) {
       const tds = row.querySelectorAll('td');
-      Registrants.push({
+      registrants.push({
         iufId: parseInt(tds[0].innerHTML),
         name: tds[1].innerHTML,
         type: tds[2].innerHTML,
         club: tds[3].innerHTML
       });
     }
-    return Registrants;
+    return registrants;
   }
 
   /**
