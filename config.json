@@ -29,7 +29,7 @@
     "db": {
       "credentialsFile": "/home/odm2019/.my.cnf",
       "credentialsName": "client",
-      "database": "odm2019_Users",
+      "database": "odm2019_dm2019",
       "host": "localhost",
       "dialect": "mariadb"
     },
